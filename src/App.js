@@ -52,12 +52,7 @@ let [modal, setModal] = useState(false);
       <div className='list'>
         <h4 onClick={() => {
 
-        setModal(true);
-
-        // 위 코드떄문에 modal이 true 로 바꼈으니 true 일떄는 modal이 false 로바꿔주세요 라고 해야함
-        modal == true ? false : null
-
-        setModel(false)
+        setModal(!modal)
 
      
         }}>{ 글제목[2] }</h4>
@@ -66,9 +61,8 @@ let [modal, setModal] = useState(false);
 
       
       {
-        // 조건식 ? 참일떄 실행할 코드 : 거짓일떄 실행할 코드
-      // 1 == 1 ? '참' : '아님'
-       modal == true ? <Modal/> : null
+    
+       modal == true ? <Modal></Modal> : null
        
 
       }
