@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import { toBeRequired } from '@testing-library/jest-dom/dist/matchers';
+import { map } from 'lodash';
 
 {}
 
@@ -14,13 +15,9 @@ let [ 글제목, 글제목변경] = useState( ["남자 코트 추천", "강남�
 
 let [따봉, 따봉변경 ] = useState(0);
 
+
 let [modal, setModal] = useState(false);
 
-// let num = [1, 2];
-// let [a, c] = [1, 2];
-
-// let a = num[0];
-// let c = num[1];
 
   return (
     <div className="App">
@@ -30,6 +27,10 @@ let [modal, setModal] = useState(false);
       <div className='list'>
         <button onClick={ () => { 
         
+        let num = [...따봉];
+        num[0] = 1
+        따봉변경(num);
+        console.log(글제목);
      
         let copy = [...글제목];
         copy[0] = '여자 코트 추천';
@@ -37,15 +38,17 @@ let [modal, setModal] = useState(false);
 
         }}>버튼</button>
 
+       
         
 
-        <h4>{ 글제목[0] } <span onClick={ () => { 따봉변경 (따봉 +1 ) }  }> 👍 </span> {따봉} </h4>
+        <h4>{ 글제목[0] } <span onClick={ () => { 따봉변경 ( 따봉 +1 ) }  }> 👍 </span> {따봉} </h4>
+        
         <p>2월 17일 발행</p>
       </div>
 
+{/* 
 
-
-      <div className='list'>
+       <div className='list'>
         <h4>{ 글제목[1] }</h4>
         <p>2월 17일 발행</p>
       </div>
@@ -57,7 +60,29 @@ let [modal, setModal] = useState(false);
      
         }}>{ 글제목[2] }</h4>
         <p>2월 17일 발행</p>
-      </div>
+      </div>  */}
+
+
+      {
+        글제목.map(function(a, i){
+          return(
+            
+            <div className='list'>
+            <h4>{글제목[i]}
+            <span onClick={()=> {
+
+            따봉변경 (따봉 +1 )
+
+            }}>👍{따봉}</span>
+            </h4>
+        
+            
+              <p>2월 17일 발행</p>
+          </div>
+          )
+        })
+      }
+
 
       
       {
