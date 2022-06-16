@@ -13,7 +13,7 @@ function App() {
 let post = "해운대 우동 맛집";
 let [ 글제목, 글제목변경] = useState( ["남자 코트 추천", "강남우동맛집","파이썬 독학"]);
 
-let [따봉, 따봉변경 ] = useState(0);
+let [따봉, 따봉변경 ] = useState([0,0,0]);
 
 
 let [modal, setModal] = useState(false);
@@ -71,9 +71,14 @@ let [modal, setModal] = useState(false);
             <h4>{글제목[i]}
             <span onClick={()=> {
 
-            따봉변경 (따봉 +1 )
+            let num = [...따봉];
+            num[i] = num[i] +1;
 
-            }}>👍{따봉}</span>
+
+
+            따봉변경 (num )
+
+            }}>👍{따봉[i]}</span>
             </h4>
         
             
