@@ -14,7 +14,7 @@ let post = "해운대 우동 맛집";
 let [ 글제목, 글제목변경] = useState( ["남자 코트 추천", "강남우동맛집","파이썬 독학"]);
 
 let [따봉, 따봉변경 ] = useState([0,0,0]);
-
+let [title, setTitle] = useState(0);
 
 let [modal, setModal] = useState(false);
 
@@ -24,75 +24,46 @@ let [modal, setModal] = useState(false);
       <div className="black-nav">
         <h4 style={ {color:"red", fontSize:"16px"} }>블로그임</h4>
       </div>
-      <div className='list'>
-        <button onClick={ () => { 
-        
-        let num = [...따봉];
-        num[0] = 1
-        따봉변경(num);
-        console.log(글제목);
-     
-        let copy = [...글제목];
-        copy[0] = '여자 코트 추천';
-        글제목변경(copy);
 
-        }}>버튼</button>
-
-       
+      <div>
+        <button onClick={() => {
         
-
-        <h4>{ 글제목[0] } <span onClick={ () => { 따봉변경 ( 따봉 +1 ) }  }> 👍 </span> {따봉} </h4>
-        
-        <p>2월 17일 발행</p>
+          setTitle(0)
+        }}>0번글</button>
+           <button onClick={() => {
+          setTitle(1)
+        }}>1번글</button>
+          <button onClick={() => {
+          setTitle(2)
+        }}>2번글</button>
       </div>
-
-{/* 
-
-       <div className='list'>
-        <h4>{ 글제목[1] }</h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className='list'>
-        <h4 onClick={() => {
-
-        setModal(!modal)
-
-     
-        }}>{ 글제목[2] }</h4>
-        <p>2월 17일 발행</p>
-      </div>  */}
-
 
       {
         글제목.map(function(a, i){
           return(
             
             <div className='list'>
-            <h4>{글제목[i]}
-            <span onClick={()=> {
+            <h4 onClick={()=>{
+              setModal(true);
+              setTitle(i);
 
-            let num = [...따봉];
-            num[i] = num[i] +1;
-
-
-
-            따봉변경 (num )
-
-            }}>👍{따봉[i]}</span>
+            }}>{글제목[i]}
+           
             </h4>
         
             
               <p>2월 17일 발행</p>
           </div>
+          
+        
           )
         })
       }
-
-
+ 
       
       {
     
-       modal == true ? <Modal></Modal> : null
+       modal == true ?<Modal title={title} 글제목={글제목} /> : null
        
 
       }
@@ -101,12 +72,14 @@ let [modal, setModal] = useState(false);
   );
 }
 
-function Modal(){
+
+function Modal(props){
   return (
     <div className="modal">
-      <h4>제목</h4>
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+    
     </div>
   )
 }
